@@ -12,10 +12,6 @@ namespace ConsoleApp1
 		public static string DateDiff(this DateTime DateMeasure, DateTime DateReference)
 		{
 			string result = string.Empty;
-			if (DateReference == null)
-			{
-				DateReference = DateTime.Now;
-			}
 
 			DateReference = RoundTimeMinute(DateReference);
 			DateMeasure = RoundTimeMinute(DateMeasure);
@@ -29,14 +25,17 @@ namespace ConsoleApp1
 
 			if (timeDiff.Days < 7)
 			{
-				return $"{timeDiff.Days} d {timeDiff.Hours} h";
+        DateTime dateDiff = new DateTime(1, 1, 1);
+        dateDiff = dateDiff.Add(timeDiff);
+        dateDiff = RoundTimeHour(dateDiff);
+				return $"{timeDiff.Days} d {dateDiff.Hour} h";
 			}
 
-			(int Week, int Day) Weeks = CalcWeeks(timeDiff);
+			(int Week, int Day) weeks = CalcWeeks(timeDiff);
 
-			if (Weeks.Week > 0)
+			if (weeks.Week < 14)
 			{
-				result = $"{Weeks.Week} w {Weeks.Day}";
+				return $"{weeks.Week} w {weeks.Day} d";
 			}
 
 			Console.WriteLine(timeDiff.ToString());

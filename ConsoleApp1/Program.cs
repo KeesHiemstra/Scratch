@@ -21,10 +21,11 @@ namespace ConsoleApp1
 			private static void InitializeTestDT()
 			{
 				TestDT.Add(new DateTime(2019, 8, 28, 7, 50, 31));
-				//TestDT.Add(new DateTime(2019, 8, 28, 6, 30, 0));
-				//TestDT.Add(new DateTime(2019, 8, 27, 18, 21, 12));
-				//TestDT.Add(new DateTime(2019, 8, 24, 0, 0, 0));
-				//TestDT.Add(new DateTime(2019, 4, 11, 6, 12, 53));
+				TestDT.Add(new DateTime(2019, 8, 28, 6, 30, 0));
+				TestDT.Add(new DateTime(2019, 8, 27, 18, 21, 12));
+				TestDT.Add(new DateTime(2019, 8, 24, 0, 0, 0));
+				TestDT.Add(new DateTime(2019, 5, 26, 6, 12, 53));
+				TestDT.Add(new DateTime(2019, 4, 11, 6, 12, 53));
 				//TestDT.Add(new DateTime(2018, 9, 30, 0, 0, 0));
 				//TestDT.Add(new DateTime(2018, 8, 24, 0, 0, 0));
 				//TestDT.Add(new DateTime(2018, 8, 23, 0, 0, 0));
