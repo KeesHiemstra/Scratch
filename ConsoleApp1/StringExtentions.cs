@@ -38,15 +38,44 @@ namespace ConsoleApp1
 				return $"{weeks.Week} w {weeks.Day} d";
 			}
 
-			System.Console.WriteLine($"{DateMeasure}\t{DateReference}\t=>\t{Math.Abs(DateMeasure.Day - DateReference.Day)}");
-
-			int year = DateMeasure.Year - DateReference.Year;
-			if (DateReference.DayOfYear > DateMeasure.DayOfYear)
+			int days = Math.Abs(DateReference.Day - DateMeasure.Day);
+			int months = (DateReference.Month - DateMeasure.Month);
+			if (DateReference.Day < DateMeasure.Day)
 			{
+				months--;
 
+				DateTime dateReference = new DateTime(DateReference.Year, DateReference.Month - 1, DateMeasure.Day);
+				days = (DateReference - dateReference).Days;
 			}
 
-			Console.WriteLine(timeDiff.ToString());
+			int years = DateReference.Year - DateMeasure.Year;
+			if (DateReference.DayOfYear < DateMeasure.DayOfYear)
+			{
+				years--;
+				months += 12;
+			}
+
+			int count = 0;
+			if (years > 0)
+			{
+				result = $"{years} y";
+				count++;
+			}
+
+			if (months > 0)
+			{
+				if (count == 1 && days > 15)
+				{
+					months++;
+				}
+				result = $"{result} {months} m".Trim();
+				count++;
+			}
+
+			if (count < 2 && days > 0)
+			{
+				result = $"{result} {days} d".Trim();
+			}
 
 			return result;
 		}
