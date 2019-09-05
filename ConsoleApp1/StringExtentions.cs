@@ -38,6 +38,8 @@ namespace ConsoleApp1
 				return $"{weeks.Week} w {weeks.Day} d";
 			}
 
+			System.Console.WriteLine($"{DateMeasure}\t{DateReference}\t=>\t{Math.Abs(DateMeasure.Day - DateReference.Day)}");
+
 			int year = DateMeasure.Year - DateReference.Year;
 			if (DateReference.DayOfYear > DateMeasure.DayOfYear)
 			{
