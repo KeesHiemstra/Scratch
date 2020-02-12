@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoostStringExtensions", "JoostStringExtensions\JoostStringExtensions.csproj", "{F26A6C9E-BE3C-4075-9784-057318C03CBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingOptions", "BankingOptions\BankingOptions.csproj", "{419F0875-1703-4CF1-89E5-075FF1425E0C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetVersionOverview", "GetVersionOverview\GetVersionOverview.csproj", "{4A092FB8-3407-4C1F-8331-05501D0A5170}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Palindrome", "Palindrome\Palindrome.csproj", "{64470FEE-272E-4C36-9461-A772A9ECEF55}"
@@ -21,10 +19,6 @@ Global
 		{F26A6C9E-BE3C-4075-9784-057318C03CBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F26A6C9E-BE3C-4075-9784-057318C03CBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F26A6C9E-BE3C-4075-9784-057318C03CBA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{419F0875-1703-4CF1-89E5-075FF1425E0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{419F0875-1703-4CF1-89E5-075FF1425E0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{419F0875-1703-4CF1-89E5-075FF1425E0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{419F0875-1703-4CF1-89E5-075FF1425E0C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4A092FB8-3407-4C1F-8331-05501D0A5170}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4A092FB8-3407-4C1F-8331-05501D0A5170}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A092FB8-3407-4C1F-8331-05501D0A5170}.Release|Any CPU.ActiveCfg = Release|Any CPU
