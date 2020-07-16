@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TranslateIP", "TranslateIP\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompleteTally", "CompleteTally\CompleteTally.csproj", "{A7B858D6-C8EE-45C1-8A40-ADA5D85C54A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TryCScarp9-1", "TryCScarp9-1\TryCScarp9-1.csproj", "{13B2DD9D-EBC9-419A-A4F3-178C1EEE9713}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mail1", "Mail1\Mail1.csproj", "{98393822-0DBB-4A6E-8288-4EC74FF2C325}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,10 @@ Global
 		{A7B858D6-C8EE-45C1-8A40-ADA5D85C54A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7B858D6-C8EE-45C1-8A40-ADA5D85C54A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7B858D6-C8EE-45C1-8A40-ADA5D85C54A2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{13B2DD9D-EBC9-419A-A4F3-178C1EEE9713}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{13B2DD9D-EBC9-419A-A4F3-178C1EEE9713}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{13B2DD9D-EBC9-419A-A4F3-178C1EEE9713}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{13B2DD9D-EBC9-419A-A4F3-178C1EEE9713}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98393822-0DBB-4A6E-8288-4EC74FF2C325}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98393822-0DBB-4A6E-8288-4EC74FF2C325}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98393822-0DBB-4A6E-8288-4EC74FF2C325}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98393822-0DBB-4A6E-8288-4EC74FF2C325}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
