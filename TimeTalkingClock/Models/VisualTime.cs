@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Speech.Synthesis;
 using System.Timers;
 
+using TimeClock.ViewModels;
+
 namespace TimeTalkingClock
 {
 	/// <summary>
@@ -18,10 +20,7 @@ namespace TimeTalkingClock
 
 		#region [ Fields ]
 
-		// Initialize a new instance of the SpeechSynthesizer.
-		private SpeechSynthesizer synth = new SpeechSynthesizer() { Rate = -2 };
 		private DateTime currentTime;
-		private string timeText;
 
 		#endregion
 
@@ -58,9 +57,7 @@ namespace TimeTalkingClock
 		public VisualTime()
 		{
 			CreateTimer();
-
-			// Configure the audio output. 
-			synth.SetOutputToDefaultAudioDevice();
+			AudioTime.Say(CurrentTime);
 		}
 
 		#endregion
@@ -113,19 +110,7 @@ namespace TimeTalkingClock
 
 			if (CurrentTime.Second == 0)
 			{
-				if (CurrentTime.Minute == 0)
-				{
-					// Hour time
-					timeText = $"{CurrentTime.Hour} o'clock.";
-				}
-				else if (CurrentTime.Minute == 30)
-				{
-					// Half hour time
-					timeText = $"Half past {CurrentTime.Hour}.";
-				}
-
-				// Speak a string asynchronously.
-				synth.SpeakAsync(timeText);
+				AudioTime.Say(CurrentTime);
 			}
 		}
 	}
