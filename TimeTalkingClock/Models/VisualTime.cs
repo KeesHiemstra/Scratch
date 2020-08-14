@@ -1,7 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Speech.Synthesis;
 using System.Timers;
 
 using TimeClock.ViewModels;
@@ -41,7 +39,7 @@ namespace TimeTalkingClock
 					NotifyPropertyChanged("");
 
 					// The trace can be find in the output window
-					Trace.WriteLine($"{DateTime.Now:HH:mm:ss:fffffff} Current time is changed to {CurrentTime}");
+					//Trace.WriteLine($"{DateTime.Now:HH:mm:ss:fffffff} Current time is changed to {CurrentTime}");
 				}
 			}
 		}
@@ -110,7 +108,10 @@ namespace TimeTalkingClock
 
 			if (CurrentTime.Second == 0)
 			{
-				AudioTime.Say(CurrentTime);
+				if (CurrentTime.Minute % 15 == 0)
+				{
+					AudioTime.Say(CurrentTime);
+				}
 			}
 		}
 	}

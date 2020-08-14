@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Speech.Synthesis;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TimeClock.ViewModels
 {
@@ -32,7 +28,7 @@ namespace TimeClock.ViewModels
 			}
 			else if (time.Minute == 30)
 			{
-				text += $"Half pas {time.Hour}.";
+				text += $"Half past {time.Hour}.";
 			}
 			else if (time.Minute == 45)
 			{
