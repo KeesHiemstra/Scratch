@@ -8,7 +8,11 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using Timer2;
 
 namespace WeatherMonitor.Models
 {
@@ -16,8 +20,12 @@ namespace WeatherMonitor.Models
 	{
 
 		#region [ Fields ]
+		private MainWindow View;
 
 		private readonly string DayWeatherJsonPath = "%OneDrive%\\Data\\DailyWeather".TranslatePath();
+		private string JsonFile;
+		private AutoResetEvent AutoEvent;
+		private Timer AutoLoad;
 
 		#endregion
 
@@ -35,10 +43,14 @@ namespace WeatherMonitor.Models
 
 		#region [ Construction ]
 
-		public DayWeathers()
+		public DayWeathers(MainWindow mainView)
 		{
+			View = mainView;
 			Date = DateTime.Now.Date;
-			LoadDayWeather($"{DayWeatherJsonPath}\\DayWeather.json");
+			JsonFile = $"{DayWeatherJsonPath}\\DayWeather.json";
+			LoadDayWeather(JsonFile);
+			//Start only the timer with current weather
+			StartTimer();
 		}
 
 		public DayWeathers(DateTime date)
@@ -53,7 +65,6 @@ namespace WeatherMonitor.Models
 
 
 		#endregion
-
 
 		private void LoadDayWeather(string jsonFile)
 		{
@@ -78,6 +89,44 @@ namespace WeatherMonitor.Models
 			TemperatureMax = Weathers.Max(x => x.Temperature);
 		}
 
+		private void StartTimer()
+		{
+			TimeSpan start = DateTime.Now.ToUniversalTime() - TimeLastWrite;
+			TimeSpan time = new TimeSpan(0, 0, 1);
 
+			AutoEvent = new AutoResetEvent(false);
+			AutoLoad = new Timer(CheckFile, AutoEvent, start, time);
+
+			StackPanel stackPanel = new StackPanel()
+			{
+				Orientation = Orientation.Horizontal,
+			};
+			string text = $"{DateTime.Now:HH:mm:ss} {start} {time} ";
+			TextBlock block = new TextBlock()
+			{
+				Text = text,
+			};
+			stackPanel.Children.Add(block);
+			View.LogStackPanel.Children.Add(stackPanel);
+		}
+
+		private void CheckFile(Object stateInfo)
+		{
+			FileInfo info = new FileInfo(JsonFile);
+
+			StackPanel stackPanel = new StackPanel()
+			{
+				Orientation = Orientation.Horizontal,
+			};
+			string text = $"{DateTime.Now:HH:mm:ss} {info.LastWriteTimeUtc:HH:mm:ss} ";
+			TextBlock block = new TextBlock()
+			{
+				Text = text,
+			};
+			stackPanel.Children.Add(block);
+			View.LogStackPanel.Children.Add(stackPanel);
+		}
 	}
+
+
 }

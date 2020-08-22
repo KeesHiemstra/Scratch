@@ -5,8 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Timer2"
         mc:Ignorable="d"
+        Loaded="Window_Loaded"
         Title="MainWindow" Height="450" Width="800">
-  <Grid>
+  <Grid Margin="10">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
 
+    <StackPanel Orientation="Horizontal">
+      <TextBlock Text="TimeLastWrite: "/>
+      <TextBlock Text="{Binding CurrentWeathers.TimeLastWrite, StringFormat=yyyy-MM-dd HH:mm:ss}"/>
+    </StackPanel>
+
+    <StackPanel Name="LogStackPanel" 
+                Orientation="Vertical"
+                Grid.Row="11">
+    </StackPanel>
   </Grid>
 </Window>

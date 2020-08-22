@@ -11,11 +11,16 @@ namespace Timer2.ViewModels
 	{
     MainWindow MainView;
 
-    public DayWeathers CurrentWeathers { get; set; } = new DayWeathers();
+    public DayWeathers CurrentWeathers { get; set; }
 
     public MainViewModel(MainWindow mainView)
     {
       MainView = mainView;
+    }
+
+		internal void Loaded()
+		{
+      CurrentWeathers = new DayWeathers(MainView);
     }
   }
 }
