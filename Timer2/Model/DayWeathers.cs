@@ -4,28 +4,31 @@ using Newtonsoft.Json;
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+
 using Timer2;
+
+using WeatherMonitor.ViewModels;
 
 namespace WeatherMonitor.Models
 {
-	public class DayWeathers
+	public class DayWeathers : INotifyPropertyChanged
 	{
 
 		#region [ Fields ]
 		private MainWindow View;
 
 		private readonly string DayWeatherJsonPath = "%OneDrive%\\Data\\DailyWeather".TranslatePath();
-		private string JsonFile;
+		private readonly string JsonFile;
 		private AutoResetEvent AutoEvent;
 		private Timer AutoLoad;
+		private int DelayAutoLoad = 10;
+		private bool IsEvaluateDelay = false;
+
+		private DateTime timeLastWrite;
 
 		#endregion
 
@@ -33,7 +36,18 @@ namespace WeatherMonitor.Models
 
 		public List<DayWeather> Weathers { get; set; } = new List<DayWeather>();
 		public DateTime Date { get; set; }
-		public DateTime TimeLastWrite { get; set; }
+		public DateTime TimeLastWrite
+		{ 
+			get => timeLastWrite;
+			set
+			{
+				if (timeLastWrite != value)
+				{
+					timeLastWrite = value;
+					NotifyPropertyChanged("");
+				}
+			}
+		}
 		public DateTime TimeMin { get; set; }
 		public DateTime TimeMax { get; set; }
 		public decimal TemperatureMin { get; set; }
@@ -63,6 +77,11 @@ namespace WeatherMonitor.Models
 
 		#region [ Public methods ]
 
+		public event PropertyChangedEventHandler PropertyChanged;
+		private void NotifyPropertyChanged(string propertyName = "")
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
 
 		#endregion
 
@@ -72,61 +91,55 @@ namespace WeatherMonitor.Models
 			{
 				FileInfo info = new FileInfo(jsonFile);
 
-				using (StreamReader stream = File.OpenText(jsonFile))
+				if (info.LastWriteTimeUtc > TimeLastWrite)
 				{
-					string json = stream.ReadToEnd();
-					Weathers = JsonConvert.DeserializeObject<List<DayWeather>>(json)
-						.Where(x => x.Time >= Date)
-						.ToList();
+					if (IsEvaluateDelay)
+					{
+						Log.Write($"Passed evaluate delay period, delay: {DelayAutoLoad} seconds");
+						AutoLoad.Change(new TimeSpan(0, 10, 0), new TimeSpan(0, 10, 0));
+						IsEvaluateDelay = false;
+					}
+
+					using (StreamReader stream = File.OpenText(jsonFile))
+					{
+						string json = stream.ReadToEnd();
+						Weathers = JsonConvert.DeserializeObject<List<DayWeather>>(json)
+							.Where(x => x.Time >= Date)
+							.ToList();
+					}
+
+					TimeMin = Weathers.Min(x => x.Time);
+					TimeMax = Weathers.Max(x => x.Time);
+					TemperatureMin = Weathers.Min(x => x.Temperature);
+					TemperatureMax = Weathers.Max(x => x.Temperature);
+
+					TimeLastWrite = info.LastWriteTimeUtc;
+					Log.Write("Loaded current Weathers file");
 				}
-
-				TimeLastWrite = info.LastWriteTimeUtc;
+				else
+				{
+					Log.Write($"Evaluate delay: Added 10 second");
+					AutoLoad.Change(new TimeSpan(0, 0, 10), new TimeSpan(0, 0, 10));
+					DelayAutoLoad += 10;
+					IsEvaluateDelay = true;
+				}
 			}
-
-			TimeMin = Weathers.Min(x => x.Time);
-			TimeMax = Weathers.Max(x => x.Time);
-			TemperatureMin = Weathers.Min(x => x.Temperature);
-			TemperatureMax = Weathers.Max(x => x.Temperature);
 		}
 
 		private void StartTimer()
 		{
-			TimeSpan start = DateTime.Now.ToUniversalTime() - TimeLastWrite;
-			TimeSpan time = new TimeSpan(0, 0, 1);
+			TimeSpan start = TimeLastWrite.AddMinutes(10).AddSeconds(DelayAutoLoad) - 
+				DateTime.Now.ToUniversalTime();
+			TimeSpan time = new TimeSpan(0, 10, 0);
 
 			AutoEvent = new AutoResetEvent(false);
 			AutoLoad = new Timer(CheckFile, AutoEvent, start, time);
-
-			StackPanel stackPanel = new StackPanel()
-			{
-				Orientation = Orientation.Horizontal,
-			};
-			string text = $"{DateTime.Now:HH:mm:ss} {start} {time} ";
-			TextBlock block = new TextBlock()
-			{
-				Text = text,
-			};
-			stackPanel.Children.Add(block);
-			View.LogStackPanel.Children.Add(stackPanel);
+			Log.Write($"CheckFile will be started at {DateTime.Now + start}");
 		}
 
 		private void CheckFile(Object stateInfo)
 		{
-			FileInfo info = new FileInfo(JsonFile);
-
-			StackPanel stackPanel = new StackPanel()
-			{
-				Orientation = Orientation.Horizontal,
-			};
-			string text = $"{DateTime.Now:HH:mm:ss} {info.LastWriteTimeUtc:HH:mm:ss} ";
-			TextBlock block = new TextBlock()
-			{
-				Text = text,
-			};
-			stackPanel.Children.Add(block);
-			View.LogStackPanel.Children.Add(stackPanel);
+			LoadDayWeather(JsonFile);
 		}
 	}
-
-
 }

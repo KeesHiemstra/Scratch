@@ -27,12 +27,12 @@ namespace Timer2
 		{
 			InitializeComponent();
 			MainVM = new MainViewModel(this);
-			DataContext = MainVM;
 		}
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
 			MainVM.Loaded();
+			DataContext = MainVM;
 		}
 	}
 }
