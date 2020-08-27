@@ -12,12 +12,10 @@ namespace CHi.Log
 
     #endregion
 
-    public static string SetLoggingFile(string loggingFile)
-    {
-      LoggingFile = loggingFile;
-      return loggingFile;
-    }
-
+    /// <summary>
+    /// Write single line 'message' to the log file followed to the date/time.
+    /// </summary>
+    /// <param name="message"></param>
     public static void Write(string message)
     {
       if (string.IsNullOrEmpty(LoggingFile))
@@ -40,6 +38,10 @@ namespace CHi.Log
       }
     }
 
+    /// <summary>
+    /// Write multi lines messages to the log file, but only first line followed to the date/time.
+    /// </summary>
+    /// <param name="messages"></param>
     public static void Write(params string[] messages)
     {
 			if (messages.Length == 0) { return;	}
@@ -51,6 +53,17 @@ namespace CHi.Log
 				stream.WriteLine($"                    {messages[LineNo]}");
 			}
 		}
+
+    /// <summary>
+    /// Set the LoggingFile for the log file (other than the default).
+    /// </summary>
+    /// <param name="loggingFile"></param>
+    /// <returns></returns>
+    public static string SetLoggingFile(string loggingFile)
+    {
+      LoggingFile = loggingFile;
+      return loggingFile;
+    }
 
   }
 }
