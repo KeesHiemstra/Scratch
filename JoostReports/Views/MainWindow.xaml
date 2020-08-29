@@ -1,0 +1,53 @@
+﻿<Window x:Class="JoostReports.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JoostReports"
+        mc:Ignorable="d"
+        Title="Joost reports" 
+        Height="450" 
+        Width="800">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <Menu>
+      <MenuItem Header="File">
+        <MenuItem Name="RestoreDatabase"
+                  Header="_Restore database"
+                  Click="RestoreDatabase_Click"/>
+        <Separator/>
+        <MenuItem Header="E_xit"/>
+      </MenuItem>
+    </Menu>
+
+    <WrapPanel Name="MainWarpPanel"
+               Orientation="Horizontal"
+               Margin="10"
+               ScrollViewer.CanContentScroll="True"
+               ScrollViewer.VerticalScrollBarVisibility="Visible"
+               Grid.Row="1">
+      <Border>
+        <StackPanel Orientation="Vertical">
+          <ListView ItemsSource="{Binding Journals}"
+                    Height="200">
+            <ListView.View>
+              <GridView ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <GridViewColumn Header="Start"
+                                DisplayMemberBinding="{Binding DTStart, StringFormat=yyyy-MM-dd HH:mm}"/>
+                <GridViewColumn Header="Event"
+                                DisplayMemberBinding="{Binding Event}"/>
+                <GridViewColumn Header="Message"
+                                DisplayMemberBinding="{Binding Message}"/>
+              </GridView>
+            </ListView.View>
+          </ListView>
+        </StackPanel>
+      </Border>
+    </WrapPanel>
+    
+  </Grid>
+</Window>
