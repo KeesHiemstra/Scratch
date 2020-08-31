@@ -1,0 +1,44 @@
+﻿<Window x:Class="MonthCalendar.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MonthCalendar"
+        mc:Ignorable="d"
+        Title="Month calandar" Height="450" Width="800">
+  <Grid>
+    <TextBlock Text="Tekst"/>
+    <!--
+    <Border>
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Border Height="300"
+                Width="50"
+                Grid.RowSpan="6"
+                Grid.Column="0"
+                Grid.Row="0">
+          <TextBlock Text="September 2020"/>
+        </Border>
+      </Grid>
+    </Border> -->
+  </Grid>
+</Window>
