@@ -53,18 +53,25 @@ namespace ExperimentsWithLINQ1
 
 		private static void MonthTotals()
 		{
+			string[] monthName = new string[] { "Tot", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
 			var month = Journals
-				.Where(x => x.Time >= new DateTime(2020, 01, 01))
+				.Where(x => x.Time >= new DateTime(2018, 01, 01))
 				.GroupBy(
-					x => (x.Time.Year, x.Time.Month),
+					x => (Year: x.Time.Year, Month: x.Time.Month),
 					x => decimal.Parse(x.Message),
 					(Date, rain) => new
-					{
-						Key = Date,
-						YearTotals = rain.Sum(x => x),
-						MonthTotals = rain.Sum(x => x)
-					}
+						{
+							Key = Date,
+							MonthTotals = rain.Sum(x => x)
+						}
 					);
+
+			Console.WriteLine("Year\tMonth\tRain");
+			Console.WriteLine("----\t-----\t----");
+			foreach (var item in month)
+			{
+				Console.WriteLine($"{item.Key.Year}\t{monthName[item.Key.Month]}\t{item.MonthTotals}");
+			}
 		}
 
 		#region Load the data
