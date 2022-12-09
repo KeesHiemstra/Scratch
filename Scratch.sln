@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conversions", "Conversions\Conversions.csproj", "{707DDC09-1A40-43E1-9B5F-0D4092D65B2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsItems", "ContactsItems\ContactsItems.csproj", "{B0C19F27-23EB-4C3D-9F81-01CB66E7D06E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDTCreation", "TestDTCreation\TestDTCreation.csproj", "{59BBF891-D0E9-4DC5-945B-E4F7E109245C}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{707DDC09-1A40-43E1-9B5F-0D4092D65B2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{707DDC09-1A40-43E1-9B5F-0D4092D65B2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{707DDC09-1A40-43E1-9B5F-0D4092D65B2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{707DDC09-1A40-43E1-9B5F-0D4092D65B2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0C19F27-23EB-4C3D-9F81-01CB66E7D06E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0C19F27-23EB-4C3D-9F81-01CB66E7D06E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0C19F27-23EB-4C3D-9F81-01CB66E7D06E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0C19F27-23EB-4C3D-9F81-01CB66E7D06E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59BBF891-D0E9-4DC5-945B-E4F7E109245C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59BBF891-D0E9-4DC5-945B-E4F7E109245C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59BBF891-D0E9-4DC5-945B-E4F7E109245C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59BBF891-D0E9-4DC5-945B-E4F7E109245C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
